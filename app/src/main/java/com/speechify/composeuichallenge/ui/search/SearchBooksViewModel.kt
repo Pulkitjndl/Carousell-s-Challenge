@@ -1,5 +1,6 @@
 package com.speechify.composeuichallenge.ui.search
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -75,8 +76,14 @@ class SearchBooksViewModel @Inject constructor(
     private fun loadBooks() {
         viewModelScope.launch {
             _isLoading.value = true
-            _books.value = repository.getBooks()
-            _isLoading.value = false
+            try {
+                _books.value = repository.getBooks()
+
+            } catch (e: Exception) {
+                Log.e("SearchBooksVM", "Failed to load books", e)
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 

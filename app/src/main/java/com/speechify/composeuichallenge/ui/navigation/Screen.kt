@@ -1,8 +1,12 @@
 package com.speechify.composeuichallenge.ui.navigation
 
-sealed class Screen(val route: String) {
-    data object Search : Screen("search")
-    data object Details : Screen("details/{bookId}") {
-        fun createRoute(bookId: String) = "details/$bookId"
-    }
+import kotlinx.serialization.Serializable
+
+@Serializable
+sealed class Routes {
+    @Serializable
+    object SearchScreen : Routes()
+
+    @Serializable
+    data class DetailsScreen(val bookId: String) : Routes()
 }

@@ -18,22 +18,20 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Search.route
+        startDestination = Routes.SearchScreen
     ) {
 
-        composable(route = Screen.Search.route) {
+        composable<Routes.SearchScreen> {
             val viewModel: SearchBooksViewModel = hiltViewModel()
             SearchBooksScreen(
                 viewModel = viewModel,
                 onBookClick = { bookId ->
-                    navController.navigate(Screen.Details.createRoute(bookId))
+                    navController.navigate(Routes.DetailsScreen(bookId))
                 }
             )
         }
 
-        composable(
-            route = Screen.Details.route,
-            arguments = listOf(navArgument("bookId") { type = NavType.StringType })
+        composable<Routes.DetailsScreen>(
         ) {
             val viewModel: BookDetailsViewModel = hiltViewModel()
             BookDetailsScreen(viewModel = viewModel)
