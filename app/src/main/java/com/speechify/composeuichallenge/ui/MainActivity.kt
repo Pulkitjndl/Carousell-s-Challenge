@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.speechify.composeuichallenge.ui.navigation.AppNavGraph
 import com.speechify.composeuichallenge.ui.theme.ComposeUIChallengeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,9 +24,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ComposeUIChallengeTheme {
-                Greeting()
-            }
+            val navController = rememberNavController()
+            AppNavGraph(navController = navController)
         }
     }
 }
