@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.speechify.composeuichallenge"
+    namespace = "com.carousellnews.composeuichallenge"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.speechify.composeuichallenge"
+        applicationId = "com.CarousellNews.composeuichallenge"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
+    ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
@@ -67,4 +68,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.room.ktx)
+    implementation("androidx.compose.material:material-icons-extended")
+}
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
 }
